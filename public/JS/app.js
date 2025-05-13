@@ -17,7 +17,7 @@ Choose:
     if (choice === 'sign up') {
         let name = prompt('Enter your full name:').trim();
         if (/[\d@#\-\+\*/]/.test(name) || name.split(' ').join('').length < 5) {
-            alert('It must not  numbers or special characters,  5 characters long');
+            alert('It must not  numbers or special characters, and 5 characters long');
             continue;
         }
         name = name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -51,4 +51,36 @@ Choose:
         console.log(users);
     }
 
- }
+    if (choice === 'login') {
+        let email = prompt('Enter your email:').trim().toLowerCase();
+        let password = prompt('Enter your password:').trim();
+        let user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            alert('Login successful!');
+        } else {
+            alert('Invalid email or password.');
+        }
+    }
+
+    if (choice === 'change the password') {
+        let email = prompt('Enter your email:').trim().toLowerCase();
+        let user = users.find(user => user.email === email);
+
+        if (!user) {
+            alert('Email not found.');
+            continue;
+        }
+
+        let newPassword = prompt('Enter new password:').trim();
+        if (newPassword.includes(' ') || !/[@#\-\+\*/]/.test(newPassword) || newPassword.length < 7) {
+            alert(' It must be  7 characters long and i special character (@, #, -, +, *, /).');
+            continue;
+        }
+
+        user.password = newPassword;
+        alert('Password updated successfully!');
+    }
+}
+
+ 
