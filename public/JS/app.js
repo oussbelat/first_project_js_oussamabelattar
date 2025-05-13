@@ -29,7 +29,7 @@ Choose:
         }
 
         let age = prompt('Enter your age:').trim();
-        if (!/^\d{1,2}$/.test(age) || age < 1 || age > 99) {
+        if ( age < 1 || age > 99) {
             alert(' a number between 1 and 99.');
             continue;
         }
